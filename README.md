@@ -13,7 +13,7 @@
 
 # waybar
 
-![1712348068_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/48425be5-e33f-4823-8f9c-1ba40be939ff)
+![1712347451_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/8d3e2e0b-328d-417b-b97c-7eb216222774)
 
 
 # Rofi
