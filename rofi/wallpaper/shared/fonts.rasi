@@ -1,0 +1,10 @@
+/**
+ *
+ * Author : Alberto Hernandez
+ * Github : @vague2k
+ * 
+ **/
+
+* {
+    font: "JetBrains Mono Nerd Font 10";
+}

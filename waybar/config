@@ -1,0 +1,113 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "height": 34,
+    "modules-left": [
+        "custom/logo",
+        "hyprland/workspaces",
+        "idle_inhibitor"
+
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray",
+        "memory",
+        "custom/notify",
+        "pulseaudio",
+        "custom/power"
+    ],
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "on-click-right": "fullscreen",
+        "icon-theme": "WhiteSur",
+        "icon-size": 25,
+        "tooltip-format": "{title}"
+    },
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "default": " ",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "active": "󱓻",
+            "urgent": "󱓻"
+        },
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+    "memory": {
+        "interval": 5,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "format-alt": "   {:%a, %d %b %Y}",
+        "format": "  {:%H:%M}"
+    },
+    "custom/notify": {
+      "escape": true,
+      "exec": "swaync-client -swb",
+      "exec-if": "which swaync-client",
+      "format": "{icon} {}",
+      "format-icons": {
+        "dnd-inhibited-none": " <sup></sup>",
+        "dnd-inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+        "dnd-none": " ",
+        "dnd-notification": " <span foreground='#f38ba8'><sup></sup></span>",
+        "inhibited-none": "<sup>󰜺</sup>",
+        "inhibited-notification": "󰵙<span foreground='#f38ba8'><sup></sup></span>",
+        "none": " ",
+        "notification": " <span foreground='#f38ba8'><sup></sup></span>"
+      },
+      "on-click": "sleep 0.1 && swaync-client -t -sw",
+      "return-type": "json",
+      "tooltip": false
+    },
+     "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " 󱎴  ",
+            "deactivated": " 󰶐  "
+        }
+    },  
+    "pulseaudio": {
+        "format": "{icon}{volume}% {format_source}",
+        "nospacing": 1,
+        "tooltip-format": "Volume : {volume}%",
+        "format-muted": "󰝟 {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " Muted",
+        "format-icons": {
+            "default": ["󰖀 ","󰕾 "," "]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 0
+    },
+    "custom/logo": {
+        "format": "   ",
+        "tooltip": false,
+        "on-click": "~/.scripts/wallpaper.sh swww"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "sleep 0.1 && ~/.config/rofi/powermenu/type-2/powermenu.sh"
+    }
+}
