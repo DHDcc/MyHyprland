@@ -24,12 +24,13 @@ Dmenu
 
 wallpaper selector
 
-![1712348068_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/5aa75afb-48d9-4c42-a54e-28111dc37651)
+![1712347542_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/75ae9fad-ecf4-4afa-b66e-0689891c01f4)
+
 
 Power
 
+![1712358010_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/9d038021-3a2a-472d-8beb-be7c5b7b93bb)
 
-![1712347999_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/ecc22eb1-15b9-41a0-912d-531515f2072b)
 
 
 
