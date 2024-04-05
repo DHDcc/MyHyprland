@@ -22,7 +22,7 @@ Dmenu
 
 ![1712347467_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/7bdfb293-e26c-4553-ae5b-e17f31ac2591)
 
-wallpaper selector
+Wallpaper selector
 
 ![1712347542_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/75ae9fad-ecf4-4afa-b66e-0689891c01f4)
 
