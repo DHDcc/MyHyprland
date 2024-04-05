@@ -27,7 +27,7 @@ wallpaper selector
 ![1712347542_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/75ae9fad-ecf4-4afa-b66e-0689891c01f4)
 
 
-Power
+Power menu
 
 ![1712358010_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/9d038021-3a2a-472d-8beb-be7c5b7b93bb)
 
