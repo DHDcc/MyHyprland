@@ -27,7 +27,7 @@ https://roadmap.sh/
 
 https://github.com/LeCoupa/awesome-cheatsheets
 
-https://github.com/imthenachoman/How-To-Secure-A-Linux-Server#why-secure-your-server
+https://github.com/imthenachoman/How-To-Secure-A-Linux-Server
 
 https://github.com/yokoffing/Betterfox
 
