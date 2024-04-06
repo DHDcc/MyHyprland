@@ -6,30 +6,32 @@
 ![1712349097_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/3985a0ab-00e0-4868-baea-529a83feeca4)
 
 
-# Feishin 
+## Software I Use
 
-![1712347804_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/d84a2cc1-7ee8-454f-b86e-3688419fb118)
+* Operating System: [Arch Linux](https://archlinux.org/)
+* Window Manager: [Hyprland](https://github.com/hyprwm/Hyprland)
+* Status Bar: [Waybar](https://github.com/Alexays/Waybar)
+* Lockscreen: [Hyprlock](https://github.com/hyprwm/hyprlock)
+* Display Manager: [Ly](https://github.com/fairyglade/ly)
+* Terminal: [Kitty](https://github.com/kovidgoyal/kitty)
+* Notifications: [Swaync](https://github.com/ErikReider/SwayNotificationCenter)
+* Music Player: [Feishin](https://github.com/jeffvli/feishin)
+* Wallpaper : [Swww](https://github.com/LGFae/swww)
+* RSS Feed : [Newsboat](https://github.com/newsboat/newsboat) 
+* Launcher: [Rofi](https://github.com/lbonn/rofi#wayland-support)
+* GPU Controller (AMD): [Lact](https://github.com/ilya-zlobintsev/LACT)
 
+## Usefull Links
 
-# waybar
+https://roadmap.sh/
 
-![1712347451_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/8d3e2e0b-328d-417b-b97c-7eb216222774)
+https://github.com/LeCoupa/awesome-cheatsheets
 
+https://github.com/imthenachoman/How-To-Secure-A-Linux-Server#why-secure-your-server
 
-# Rofi
+https://github.com/yokoffing/Betterfox
 
-Dmenu
-
-![1712347467_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/7bdfb293-e26c-4553-ae5b-e17f31ac2591)
-
-Wallpaper selector
-
-![1712347542_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/75ae9fad-ecf4-4afa-b66e-0689891c01f4)
-
-
-Power menu
-
-![1712358010_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/9d038021-3a2a-472d-8beb-be7c5b7b93bb)
+https://privsec.dev/posts/linux/docker-and-oci-hardening/
 
 
 
