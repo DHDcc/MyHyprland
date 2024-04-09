@@ -25,7 +25,7 @@
 
 https://roadmap.sh/
 
-https://github.com/LeCoupa/awesome-cheatsheets
+https://github.com/trimstray/the-book-of-secret-knowledge#networks-toc
 
 https://github.com/imthenachoman/How-To-Secure-A-Linux-Server
 
