@@ -6,8 +6,6 @@
     "modules-left": [
         "custom/logo",
         "hyprland/workspaces",
-        "idle_inhibitor"
-
     ],
     "modules-center": [
         "clock"
@@ -79,13 +77,6 @@
       "on-click": "sleep 0.1 && swaync-client -t -sw",
       "return-type": "json",
       "tooltip": false
-    },
-     "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " 󱎴  ",
-            "deactivated": " 󰶐  "
-        }
     },  
     "pulseaudio": {
         "format": "{icon}{volume}% {format_source}",

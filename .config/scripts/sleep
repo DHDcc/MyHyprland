@@ -1,2 +1,0 @@
-timeout 290 'swaylock -e -f -i ~/Pictures/wall.png'
-timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'

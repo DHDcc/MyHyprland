@@ -50,7 +50,6 @@ window#waybar.hidden {
 #memory,
 #custom-power,
 #battery,
-#idle-inhibitor
 #backlight,
 #pulseaudio,
 #custom-notify,
@@ -96,16 +95,6 @@ window#waybar.hidden {
 #clock {
   font-family: JetBrainsMono Nerd Font;
   background-color: #cba6f7;
-}
-
-#idle_inhibitor {
-  background-color: #fab387;
-  padding-right: 8px;
-  padding-left: 6px;
-  font-size: 15px;
-  border-radius: 3px 4px 4px 3px;
-  padding: 5px;
-  margin: 7px 7px;
 }
 
 #custom-power {
