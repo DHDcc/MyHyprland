@@ -48,16 +48,18 @@
     },
     "memory": {
         "interval": 5,
-        "format": " {}%",
+        "format-alt": "<span font='10' rise='-1000'></span> {used} GiB",
+        "format": "<span font='10' rise='-1000'></span> {percentage}%",
+        "tooltip": false,
         "max-length": 10
     },
     "tray": {
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<tt>{calendar}</tt>",
-        "format-alt": "   {:%a, %d %b %Y}",
-        "format": "  {:%H:%M}"
+        //"tooltip-format": "<tt>{calendar}</tt>",
+        "format": "  {:%a %d %b    %H:%M}",
+        "on-click": "gnome-calendar"
     },
     "custom/notify": {
       "escape": true,
@@ -81,7 +83,7 @@
     "pulseaudio": {
         "format": "{icon}{volume}% {format_source}",
         "nospacing": 1,
-        "tooltip-format": "Volume : {volume}%",
+        //"tooltip-format": "Volume : {volume}%",
         "format-muted": "󰝟 {format_source}",
         "format-source": " {volume}%",
         "format-source-muted": " Muted",
