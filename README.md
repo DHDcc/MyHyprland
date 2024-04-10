@@ -1,5 +1,13 @@
-# MyHyprland 
 
+![Galaxy Photo Border General Twitch Banner](https://github.com/DHDcc/MyHyprland/assets/146121644/f726db8a-7dd3-479e-9f11-b468de25ad4d)
+
+
+
+
+
+
+
+# Preview
 ![1712767319_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/c1c1b954-739b-4a8b-9272-5292d6a1c2bd)
 
 ![1712767667_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/d47e32a5-47c5-4a5f-a557-156ab47bc0f4)
