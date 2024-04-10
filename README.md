@@ -24,6 +24,7 @@
 * Lockscreen: [Hyprlock](https://github.com/hyprwm/hyprlock)
 * Display Manager: [Ly](https://github.com/fairyglade/ly)
 * Terminal: [Kitty](https://github.com/kovidgoyal/kitty)
+* Zsh configuration : [Zsh4Humans](https://github.com/romkatv/zsh4humans) 
 * Notifications: [Swaync](https://github.com/ErikReider/SwayNotificationCenter)
 * Music Player: [Feishin](https://github.com/jeffvli/feishin)
 * Wallpaper : [Swww](https://github.com/LGFae/swww)
