@@ -1,9 +1,11 @@
 # MyHyprland 
 
+![1712767319_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/c1c1b954-739b-4a8b-9272-5292d6a1c2bd)
 
-![1712346629_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/026252c2-88cd-4a56-a18c-032b5f670f92)
+![1712767667_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/d47e32a5-47c5-4a5f-a557-156ab47bc0f4)
 
-![1712349097_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/3985a0ab-00e0-4868-baea-529a83feeca4)
+
+
 
 
 ## Software I Use
