@@ -1,3 +1,5 @@
+#!/bin/sh
+
 blue="\033[1;34m"
 pink="\033[0;35m"
 red="\033[1;31m"
@@ -50,14 +52,14 @@ recordFile="/tmp/recording.mp4"
 stopRecording() {
   recording=false
   echo ""
-  if killall --signal SIGINT wf-recorder &> /dev/null; then
+  if killall --signal SIGINT wl-screenrec &> /dev/null; then
     info "Screen record saved: $recordFile"
   else
     error "No screen record running."
   fi
 }
 record() {
-  local command="yes | wf-recorder -f $recordFile"
+  local command="yes | wl-screenrec --audio --audio-device alsa_output.pci-0000_00_1f.3.dp-stereo.monitor -f $recordFile"
   if $selection; then
     selectArea
     command+=" -g \"$area\""
