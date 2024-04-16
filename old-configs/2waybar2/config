@@ -1,0 +1,133 @@
+{
+  "layer": "top",
+  "position": "top", 
+  "height": 30,
+  
+  "modules-right": [
+    "hyprland/window",
+    "pulseaudio",
+    "battery",
+    "custom/power", 
+  ],
+  "modules-center": [ 
+    "clock",
+  ],
+  "modules-left": [
+    "custom/icon", 
+    "hyprland/workspaces",
+    "tray",
+  ],
+
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+     "10": "10"
+    }
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+  "backlight":{
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["","",""],
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "min-length": 6 
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+  },
+  "clock": {
+   "format": "{: %I:%M %p   %h %d %Y}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "on-click": "gnome-calendar"
+  },
+  "hyprland/window": {  
+  "format": "{}"   // <--- these is the default value  
+  },
+  "custom/icon": {
+    "format":"󰣇",
+    "on-click": "sh ~/.scripts/wallpaper.sh swww"
+
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": "\udb81\udf5f {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [
+            "",
+            "",
+            ""
+        ]
+    },
+    "on-click": "pavucontrol"
+},
+  "custom/power": {
+    "format": "󰐥",
+    "on-click": "sh ~/.config/rofi/powermenu/type-2/powermenu.sh "
+  },
+  "custom/menu": {
+    "format": "",
+    "on-click": "rofi -display-drun Search: -show drun  -disable-history -config ~/.config/hypr/rofi/config.rasi"
+  },
+   "custom/spotify": {
+ 
+       "interval": 1,
+       
+       "return-type": "json",
+       
+       "exec": "waybar_media_display",
+       
+       "exec-if": "pgrep spotify",
+       
+       "on-click":"playerctl --player=spotify play-pause",
+ 
+       "escape": true
+},
+  "custom/wl-gammarelay-temperature": {
+    "format": " {}",
+    "exec": "wl-gammarelay-rs watch {t}",
+    "on-scroll-up": "~/.config/hypr/scripts/brightness.sh temperature-up 100",
+    "on-scroll-down": "~/.config/hypr/scripts/brightness.sh temperature-down 100"
+  },
+  "custom/wl-gammarelay-brightness": {
+    "format": " {}",
+    "exec": "wl-gammarelay-rs watch {bp}",
+    "on-scroll-up": "~/.config/hypr/scripts/brightness.sh brightness-up 0.05",
+    "on-scroll-down": "~/.config/hypr/scripts/brightness.sh brightness-down 0.05"
+  }
+}
