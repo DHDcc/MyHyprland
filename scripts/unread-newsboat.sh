@@ -13,7 +13,7 @@ newsboat -x print-unread > $tempfile
 num=$(awk '{print $1}' "$tempfile")
 
 if [[ $num -ne 0 ]]; then
-   notify-send -i ~/icons/newspaper.png -u normal -t 2000 "Newsboat" "You have $num new articles"
+   notify-send -i ~/icons/newspaper.png -u normal -t 3000 "Newsboat" "You have $num new articles"
 else
    exit 0
 fi
