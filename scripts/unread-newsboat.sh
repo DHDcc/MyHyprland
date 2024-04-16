@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ -r "$XDG_RUNTIME_DIR/bus" ]; then
-	  export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
-fi
+# -----------------------------------------------------------------
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus &&
+# -----------------------------------------------------------------
 
 tempfile="/tmp/num.txt"
 notify=$(newsboat -x print-unread)
