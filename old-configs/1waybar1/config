@@ -94,7 +94,7 @@
     "escape": true,
     "exec": "swaync-client -swb",
     "exec-if": "which swaync-client",
-    "format": "{icon} {}",
+    "format": "{icon} {} ",
     "format-icons": {
       "dnd-inhibited-none": " <sup></sup>",
       "dnd-inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
