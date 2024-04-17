@@ -14,7 +14,10 @@ configuration {
 
     foreground:                  rgba( 242, 229, 188, 1);
     foreground-alt:              #a89984;
-    background:                  rgba(40, 40, 40, 1);
+    /**
+    * background:                  rgba(40, 40, 40, 1);
+    **/
+    background:                  #1E2127FF;
     selected-background:         rgba(60, 56, 54, 0.2);
     background-color:            transparent;
 }
