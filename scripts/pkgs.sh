@@ -17,7 +17,7 @@ pacman -Qqen > "$DIR/$BACKUP_FILE"
 pacman -Qqem > "$DIR/$BACKUP_FILE_AUR"
 
 # Finds the words and deletes them without spaces 
-for word in base base -devel bash linux -lts-headers -lts -headers -firmware vim
+for word in base base -devel bash linux -lts-headers -lts -headers -firmware -libertine ttf- vim
 do
   sed -i "s/${word}//g; /^$/ d" $DIR/$BACKUP_FILE
 done
