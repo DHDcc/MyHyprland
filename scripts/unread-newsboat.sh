@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script will send a nofification if there's a new article
+# This script will send a nofification if there's "new" articles
 # ---------------------------------------------------------------
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus 
 # ---------------------------------------------------------------
