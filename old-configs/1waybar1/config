@@ -6,8 +6,8 @@
   //"width": 1350, // Waybar width
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/mode",
-    "custom/cava-internal",
+    "hyprland/mode"
+    //"custom/cava-internal",
   ],
   "modules-center": [
     "clock",
@@ -37,7 +37,7 @@
     }
   },
   "custom/cava-internal": {
-    "exec": "sh ~/.config/waybar/scripts/Cava.sh",
+    "exec": "sh ~/.config/waybar/Cava.sh",
     "format": "{}",
     "tooltip": false,
     "on-click": "hyprlandmsg reload & pkill waybar & waybar",
@@ -148,9 +148,11 @@
   },
   "pulseaudio": {
     "scroll-step": 1,
-    "format": "{icon} {volume: >3}%",
-    "format-bluetooth": "{icon} {volume: >3}%",
+    "format": "{icon} {volume}% {format_source}",
+    "nospacing": 1,
     "format-muted": " muted",
+    "format-source": " {volume}%",
+    "format-source-muted": "   Muted",
     "format-icons": {
       "headphones": "",
       "handsfree": "",
@@ -174,13 +176,13 @@
   },
   "mpris": {
 	"format": "{player_icon}  {artist} - {title} - {album}",
-	"format-paused": "⏸  {artist} - {title} - {album}",
+	"format-paused": "▶  {artist} - {title} - {album}",
 	"player-icons": {
-		"default": "▶",
+		"default": "⏸",
 		"mpv": "🎵"
 	},
 	"status-icons": {
-		"pause": "⏸"
+		"pause": "▶"
 	},
 	// "ignored-players": ["firefox"]
 }
