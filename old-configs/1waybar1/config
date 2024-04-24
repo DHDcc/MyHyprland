@@ -6,8 +6,8 @@
   //"width": 1350, // Waybar width
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/mode"
-    //"custom/cava-internal",
+    "hyprland/mode",
+    "custom/cava_mviz"
   ],
   "modules-center": [
     "clock",
@@ -36,13 +36,9 @@
       "5": " V",
     }
   },
-  "custom/cava-internal": {
+  "custom/cava_mviz": {
     "exec": "sh ~/.config/waybar/Cava.sh",
-    "format": "{}",
-    "tooltip": false,
-    "on-click": "hyprlandmsg reload & pkill waybar & waybar",
-    "layer": "below",
-    "output": "all"
+    "format": "  {}",
   },
   "hyprland/mode": {
     "format": "<span style=\"italic\">{}</span>"
