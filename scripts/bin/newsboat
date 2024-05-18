@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+if [ $# -eq 0 ]; then
+     newsboat && echo 0 > last_num_file.txt
+else 
+     newsboat "$@"
+fi
