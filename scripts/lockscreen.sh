@@ -7,5 +7,5 @@ for player in $(playerctl --list-all); do
 done
 
 hyprctl keyword general:cursor_inactive_timeout 1
-hyprlock
+pidof hyprlock || hyprlock
 hyprctl keyword general:cursor_inactive_timeout 0
