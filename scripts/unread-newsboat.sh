@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This script will send a nofification if there's "new" articles
-# Add "alias newsboat='~/YOUR_SCRIPTS_DIR/newsboat'" in your zshrc
+# Add "alias newsboat='~/YOUR_SCRIPTS_DIR/newsboat'" in your zshrc (you need the newsboat script)
 # ---------------------------------------------------------------
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus 
 # ---------------------------------------------------------------
