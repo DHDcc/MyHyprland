@@ -3,7 +3,7 @@
 # I DID NOT WRITE THIS SCRIPT, THE OP OF THIS SCRIPT IS https://github.com/JaKooLit
 # I did update a couple thing lines, but that's about it
 
-# This script for selecting wallpapers
+# This script for selecting wallpapers (SUPER W)
 
 SCRIPTSDIR="$HOME/.scripts"
 
@@ -63,6 +63,12 @@ main() {
   fi
 }
 
+lockscreen(){
+  # This will also change the wallpaper of your lockscreen (hyprlock)
+  re="wallpapers/${PICS[$pic_index]}"
+  sed -i "8s|/wallpapers/[^/]*|/$re|" ~/.config/hypr/hyprlock.conf
+}
+
 # Check if rofi is already running
 if pidof rofi > /dev/null; then
   pkill rofi
@@ -70,3 +76,4 @@ if pidof rofi > /dev/null; then
 fi
 
 main
+#lockscreen
