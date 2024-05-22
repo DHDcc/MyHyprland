@@ -15,7 +15,7 @@ if [ ! -f $last_num_file ]; then
 fi
 last_num=$(cat $last_num_file)
 
-$(which newsboat) -x reload print-unread  > $tempfile || exit 1
+command newsboat -x reload print-unread  > $tempfile || exit 1
 
 num=$(awk '{print $1}' "$tempfile")
 
