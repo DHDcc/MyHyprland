@@ -1,30 +1,28 @@
 #!/bin/sh
 
-# This script will send a nofification if there's "new" articles
+# This script will send a notification if there are any new articles.
 # Add "alias newsboat='~/YOUR_SCRIPTS_DIR/newsboat'" in your zshrc (you need the newsboat script)
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------
 
-last_num_file=last_num_file.txt
-tempfile="$(mktemp)"
-trap "rm -f $tempfile" EXIT
+rcfile=$HOME/.zshrc
+icon=$HOME/icons/newspaper.png
 
-if [ ! -f $last_num_file ]; then
-     echo 0 > $last_num_file
+if ! grep -q "^export NEWSBOAT_LAST_NUM=" "$rcfile"; then
+     echo "export NEWSBOAT_LAST_NUM=0" >> "$rcfile"
 fi
-last_num=$(cat $last_num_file)
+last_num=$(echo "$NEWSBOAT_LAST_NUM")
 
-command newsboat -x reload print-unread  > $tempfile || exit 1
+print_unread=$(command newsboat -x reload print-unread || exit 1)
+num=$(echo "$print_unread" | awk '{print $1}')
 
-num=$(awk '{print $1}' "$tempfile")
-
-if [[ $num -eq $last_num ]]; then
-	exit 0
-elif
-   [[ $num -ne 0 ]]; then
-        notify-send -i ~/icons/newspaper.png  -u normal -t 4000 "Newsboat" "You have $num new articles"
-        echo $num > $last_num_file
+if [ "$num" -eq "$last_num" ]; then
+     exit 0
+elif [ "$num" -ne 0 ]; then
+	notify-send -i "$icon" -u normal -t 4000 "Newsboat" "You have $num new articles"
+    sed -i "s|^export NEWSBOAT_LAST_NUM=.*|export NEWSBOAT_LAST_NUM=$num|" "$rcfile"
+    exec zsh
 else
     exit 0
 fi
