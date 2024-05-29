@@ -1,9 +1,9 @@
 #!/bin/sh
 
-rcfile=$HOME/.zshrc
+file=$HOME/.config/newsboat/.last-num
+
 if [ $# -eq 0 ]; then
-     newsboat && sed -i "s|^export NEWSBOAT_LAST_NUM=.*|export NEWSBOAT_LAST_NUM=0|" "$rcfile"
-     exec zsh
+     newsboat && echo 0 > "$file"
 else 
      newsboat "$@"
 fi
