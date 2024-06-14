@@ -10,7 +10,8 @@
 # Preview
 ![1712767319_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/c1c1b954-739b-4a8b-9272-5292d6a1c2bd)
 
-![1712767667_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/d47e32a5-47c5-4a5f-a557-156ab47bc0f4)
+![swappy-20240614-220815](https://github.com/DHDcc/MyHyprland/assets/146121644/1e0c94c3-8085-40ed-b6b4-fa3a963b85f3)
+
 
 
 
