@@ -234,6 +234,22 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
 
+// PREF: enforce certificate pinning
+// [ERROR] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE
+/// user_pref("security.cert_pinning.enforcement_level", 2);
+
+
+// PREF: disable all DRM content
+user_pref("media.eme.enabled", false);
+
+// PREF: hide the setting; this also disables the DRM prompt (optional)
+user_pref("browser.eme.ui.enabled", false);
+
+
+// PREF: require safe SSL negotiation
+// [ERROR] SSL_ERROR_UNSAFE_NEGOTIATION
+user_pref("security.ssl.require_safe_negotiation", true);
+
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
 ****************************************************************************/
