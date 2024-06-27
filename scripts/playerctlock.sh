@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -eq 0 ]; then
 	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source"
@@ -41,7 +41,7 @@ case "$1" in
 	;;
 --arturl)
 	url=$(get_metadata "mpris:artUrl")
-	if [ -z "$url" ]; then
+	if [[ -z "$url" ]]; then
 		echo ""
 	else
 		if [[ "$url" == file://* ]]; then
@@ -85,11 +85,10 @@ case "$1" in
 	album=$(playerctl metadata --format "{{ xesam:album }}" 2>/dev/null)
 	if [[ -n $album ]]; then
 		length=${#album}
+		lim=20
 
-		if [[ "$length" -gt 30 ]]; then
-			half=$(( (length + 1) / 2 ))
-			short_album=$(echo "$album" | cut -c 1-${half})"..."
-		        echo "${short_album}"
+		if [[ "$length" -gt "$lim" ]]; then
+			echo "${album:0:$lim}..."
 		else 
 			echo "$album"
 		fi
@@ -109,7 +108,7 @@ case "$1" in
 	;;
 *)
 	echo "Invalid option: $1"
-	echo "Usage: $0 --title | --url | --artist | --length | --album | --source"
+	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source"
 	exit 1
 	;;
 esac
