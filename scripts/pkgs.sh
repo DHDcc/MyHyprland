@@ -1,8 +1,7 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 # This script backs up installed packages on Arch Linux.
 # to reinstall all packages use : (pacman|paru) -S - < pathtoyourpackagelist.txt
-## NEED TO FIX !!!
+
 dir="$HOME/.backup-packages"
 backup_file="$dir/BackupPackages-$(date +%d-%m-%y).txt"
 backup_file_aur="$dir/BackupPackages-AUR-$(date +%d-%m-%y).txt"
