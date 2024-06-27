@@ -232,6 +232,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 ****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
+// https://codeberg.org/Narsil/user.js/src/branch/main/desktop
 // Enter your personal overrides below this line:
 
 // PREF: enforce certificate pinning
@@ -245,10 +246,38 @@ user_pref("media.eme.enabled", false);
 // PREF: hide the setting; this also disables the DRM prompt (optional)
 user_pref("browser.eme.ui.enabled", false);
 
-
 // PREF: require safe SSL negotiation
 // [ERROR] SSL_ERROR_UNSAFE_NEGOTIATION
-user_pref("security.ssl.require_safe_negotiation", true);
+/// user_pref("security.ssl.require_safe_negotiation", true);
+
+// Firefox Accounts & Sync [FF60+] [RESTART]
+user_pref("identity.fxaccounts.enabled", false);
+
+// Disable connections to Mozilla servers
+user_pref("services.settings.server", "");
+
+// Enable user interaction for security by always asking where to download
+user_pref("browser.download.useDownloadDir", false);
+
+// Disable bypassing 3rd party extension install prompts [FF82+]
+user_pref("extensions.postDownloadThirdPartyPrompt", false);
+
+// Limit allowed extension directories
+user_pref("extensions.enabledScopes", 5); // [HIDDEN PREF]
+
+// Enable ETP Strict Mode [FF86+]
+user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
+
+// Enable Firefox to clear items on shutdown
+user_pref("privacy.sanitize.sanitizeOnShutdown", true);
+
+// Disable Ion and baseline JIT to harden against JS exploits
+user_pref("javascript.options.ion", false);
+user_pref("javascript.options.baselinejit", false);
+user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
+
+// Disable sending additional analytics to web servers
+user_pref("beacon.enabled", false); 
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
