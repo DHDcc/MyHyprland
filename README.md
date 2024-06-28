@@ -11,7 +11,8 @@
 
 ![1719102426_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/7c7b6a72-06a6-43e9-af8d-d368b8f23252)
 
-![1712767319_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/c1c1b954-739b-4a8b-9272-5292d6a1c2bd)
+![1719582888_grim](https://github.com/DHDcc/MyHyprland/assets/146121644/a10c0dae-0bcd-4aaf-b520-4a2590f8502d)
+
 
 
 
