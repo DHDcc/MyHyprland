@@ -31,7 +31,7 @@
 * Zsh configuration : [Zsh4Humans](https://github.com/romkatv/zsh4humans) 
 * Notifications: [Swaync](https://github.com/ErikReider/SwayNotificationCenter)
 * Music Player: [Feishin](https://github.com/jeffvli/feishin)
-* Icon theme : [papirus-icon-theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+* Icon theme : [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 * Wallpaper : [Swww](https://github.com/LGFae/swww)
 * RSS Feed : [Newsboat](https://github.com/newsboat/newsboat) 
 * Launcher: [Rofi](https://github.com/lbonn/rofi#wayland-support)
