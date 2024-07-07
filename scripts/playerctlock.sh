@@ -69,11 +69,14 @@ case "$1" in
 	fi
 	;;
 --length)
-	length=$(get_metadata "mpris:length")
+	duration=$(get_metadata "mpris:length")
+	duration_in_seconds=$((duration / 1000000))
+	remaining_time=$((duration_in_seconds - current_position))
+	minutes=$((remaining_time / 60))
+	seconds=$((remaining_time % 60))
 
-	if [ ! -z "$length" ]; then
-		# Convert length from microseconds to a more readable format (seconds)
-		echo "$(echo "scale=2; $length / 1000000 / 60" | bc) m"
+	if [ ! -z "$duration" ]; then
+		printf "%02d:%02d" "$minutes" "$seconds"
 	else
 		: # Do nothing
 	fi
