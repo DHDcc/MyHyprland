@@ -16,91 +16,93 @@ get_metadata() {
 # Function to determine the source and return an icon and text
 get_source_info() {
 	trackid=$(get_metadata "mpris:trackid")
-	if [[ "$trackid" == *"firefox"* ]]; then
-		echo -e "Firefox 󰈹"
-	elif [[ "$trackid" == *"Feishin"* ]]; then
-                echo -e "Feishin "
-	elif [[ "$trackid" == *"spotify"* ]]; then
-		echo -e "Spotify "
-	elif [[ "$trackid" == *"chromium"* ]]; then
-		echo -e "Chrome "
-	else
-		echo ""
-	fi
+
+	case "$trackid" in
+		*Feishin* ) echo -e "Feishin " ;;
+                *spotify* ) echo -e "Spotify " ;;
+		*chromium* ) echo -e "Chrome " ;;
+	        *) : ;; # Do nothing
+	esac
+}
+
+get_cover() {
+       local tempfile="/tmp/tmp.xG2g4TRv4i"
+       local path="/tmp/cover.png"
+
+       if [[ "$url" != $(< "$tempfile") ]]; then
+                curl "$url" -o "$path" 
+                mogrify -format png "$path"
+                echo "$url" > "$tempfile"
+       fi
+       url="$path"
 }
 
 # Parse the argument
 case "$1" in
 --title)
 	title=$(get_metadata "xesam:title")
-	if [ -z "$title" ]; then
-		echo ""
-	else
+
+	if [ ! -z "$title" ]; then
 		echo "${title:0:28}" # Limit the output to 50 characters
+	else
+		: # Do nothing
 	fi
 	;;
 --arturl)
 	url=$(get_metadata "mpris:artUrl")
-	if [[ -z "$url" ]]; then
-		echo ""
-	else
-		if [[ "$url" == file://* ]]; then
-			url=${url#file://}
-		elif [[ "$url" == http://* ]]; then
-			curl "$url" -o /tmp/cover.png
-			mogrify -format png /tmp/cover.png
-	       		url="/tmp/cover.png"
-		fi
-		echo "$url"
+
+	[[ -z "$url" ]] && : # Do nothing
+	if [[ "$url" == file://* ]]; then
+		url=${url#file://}
+	elif [[ "$url" == http://192.168.1.20:8096/* ]]; then
+		get_cover
 	fi
+	echo "$url"
 	;;
 --artist)
 	artist=$(get_metadata "xesam:artist")
-	if [ -z "$artist" ]; then
-		echo ""
-	else
+
+	if [ ! -z "$artist" ]; then
 		echo "${artist:0:30}" # Limit the output to 50 characters
+	else
+		: # Do nothing
 	fi
 	;;
 --length)
 	length=$(get_metadata "mpris:length")
-	if [ -z "$length" ]; then
-		echo ""
-	else
+
+	if [ ! -z "$length" ]; then
 		# Convert length from microseconds to a more readable format (seconds)
 		echo "$(echo "scale=2; $length / 1000000 / 60" | bc) m"
+	else
+		: # Do nothing
 	fi
 	;;
 --status)
 	status=$(playerctl status 2>/dev/null)
-	if [[ $status == "Playing" ]]; then
-		echo ""
-	elif [[ $status == "Paused" ]]; then
+
+	if [[ $status == "Paused" ]]; then
 		echo ""
+	elif [[ $status == "Playing" ]]; then
+		echo ""
 	else
-		echo ""
+		: # Do nothing
 	fi
 	;;
 --album)
 	album=$(playerctl metadata --format "{{ xesam:album }}" 2>/dev/null)
-	if [[ -n $album ]]; then
-		length=${#album}
-		lim=20
+	length=${#album}
+	lim="20"
 
+	if [[ -n $album ]]; then
 		if [[ "$length" -gt "$lim" ]]; then
-			echo "${album:0:$lim}..."
+			echo "${album:0:$lim}..." # Cut the output
 		else 
 			echo "$album"
 		fi
 
 	else
-		status=$(playerctl status 2>/dev/null)
-		if [[ -n $status ]]; then
-			#echo "No album"
-			echo " "
-		else
-			echo ""
-		fi
+	      : # Do nothing
 	fi
 	;;
 --source)
