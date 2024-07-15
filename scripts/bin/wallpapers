@@ -9,6 +9,7 @@ SCRIPTSDIR="$HOME/.scripts"
 
 # WALLPAPERS PATH
 wallDIR="$HOME/.config/swww/wallpapers"
+themesDir="$HOME/.config/rofi/wallpaper"
 
 # Transition config
 FPS=170
@@ -22,7 +23,7 @@ PICS=($(ls "${wallDIR}" | grep -E ".jpg$|.jpeg$|.png$|.gif$"))
 
 # Rofi command
 # rofi_command="~/.config/rofi/launchers/type-4/launcher.sh"
-rofi_command="rofi -show -dmenu -config ~/.config/rofi/wallpaper/wallpaper.rasi"
+rofi_command="rofi -show -dmenu -config ${themesDir}/wallpaper.rasi"
 
 menu() {
   for i in "${!PICS[@]}"; do
@@ -49,7 +50,7 @@ main() {
   pic_index=-1
   for i in "${!PICS[@]}"; do
     filename=$(basename "${PICS[$i]}")
-    if [[ "$filename" == "$choice"* ]]; then
+    if [[ "$filename" == *"$choice"* ]]; then
       pic_index=$i
       break
     fi
@@ -65,8 +66,13 @@ main() {
 
 lockscreen(){
   # This will also change the wallpaper of your lockscreen (hyprlock)
-  re="wallpapers/${PICS[$pic_index]}"
-  sed -i "8s|/wallpapers/[^/]*|/$re|" ~/.config/hypr/hyprlock.conf
+  local hyprlockConf="${XDG_CONFIG_HOME:-${HOME}}/hypr/hyprlock.conf"
+  local currentWall=${PICS[$pic_index]}
+  local line=$(grep -n "swww" ${hyprlockConf} | awk -F':' '{print $1}')
+  local path=$(grep "swww" ${hyprlockConf} | awk '{print $3}')
+  local lastWallName="${path##*/}"
+
+  sed -i "${line}s/${lastWallName}/${currentWall}/" ${hyprlockConf}
 }
 
 # Check if rofi is already running
