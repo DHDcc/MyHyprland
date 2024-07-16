@@ -69,8 +69,8 @@ lockScreen(){
  
   local hyprlockConfigFile="${XDG_CONFIG_HOME:-${HOME}}/hypr/hyprlock.conf"
   local currentWallpaperName=${PICS[$pic_index]}
-  local previousWallPath=$(grep "swww" "$hyprlockConfigFile" | awk '{print $3}')
-  local previousWallpaperName="${previousWallPath##*/}"
+  local previousWallpaperPath=$(grep "swww" "$hyprlockConfigFile" | awk '{print $3}')
+  local previousWallpaperName="${previousWallpaperPath##*/}"
   local lineNumber=$(grep -n "swww" "$hyprlockConfigFile" | awk -F':' '{print $1}')
 
   sed -i "${lineNumber}s/${previousWallpaperName}/${currentWallpaperName}/" "$hyprlockConfigFile"
