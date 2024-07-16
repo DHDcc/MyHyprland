@@ -64,15 +64,16 @@ main() {
   fi
 }
 
-lockscreen(){
-  # This will also change the wallpaper of your lockscreen (hyprlock)
-  local hyprlockConf="${XDG_CONFIG_HOME:-${HOME}}/hypr/hyprlock.conf"
-  local currentWall=${PICS[$pic_index]}
-  local line=$(grep -n "swww" ${hyprlockConf} | awk -F':' '{print $1}')
-  local path=$(grep "swww" ${hyprlockConf} | awk '{print $3}')
-  local lastWallName="${path##*/}"
+lockScreen(){
+  # This will also change the wallpaper of your lock screen (hyprlock)
+ 
+  local hyprlockConfigFile="${XDG_CONFIG_HOME:-${HOME}}/hypr/hyprlock.conf"
+  local currentWallpaperName=${PICS[$pic_index]}
+  local previousWallPath=$(grep "swww" ${hyprlockConfigFile} | awk '{print $3}')
+  local previousWallpaperName="${previousWallPath##*/}"
+  local lineNumber=$(grep -n "swww" ${hyprlockConfigFile} | awk -F':' '{print $1}')
 
-  sed -i "${line}s/${lastWallName}/${currentWall}/" ${hyprlockConf}
+  sed -i "${lineNumber}s/${previousWallpaperName}/${currentWallpaperName}/" "$hyprlockConfigFile"
 }
 
 # Check if rofi is already running
@@ -82,4 +83,4 @@ if pidof rofi > /dev/null; then
 fi
 
 main
-#lockscreen
+#lockScreen
