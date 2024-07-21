@@ -1,104 +1,121 @@
 #!/usr/bin/env bash
 
-# Check for arguments
-if [ $# -eq 0 ]; then
-	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source"
-	exit 1
-fi
 
-# Function to get metadata using playerctl
-getMetadata() {
-	key=$1
+usage() {
+    cat << EOF 
+usage: ${scriptName} [options]
+
+    --title    Get the title of the source
+    --arturl   Get the path to the cover of the source
+    --artist   Get the name of the artist
+    --length   Get the length of the source
+    --album    Get the name of the album
+    --status   Get the status of the source
+    --source   Get info on the source
+    --help     Show this help
+EOF
+}
+
+getMetadata(){
+	local key="$1"
 	playerctl metadata --format "{{ $key }}" 2>/dev/null
 }
 
-# Function to determine the source and return an icon and text
-getSourceInfo() {
-	trackid=$(getMetadata "mpris:trackid")
-
-	case "$trackid" in
+getSourceInfo(){
+	case "${source}" in
 		*Feishin* ) echo -e "Feishin " ;;
                 *spotify* ) echo -e "Spotify " ;;
-		*chromium* ) echo -e "Chrome " ;;
-	        *) : ;; # Do nothing
+		*chromium* ) echo -e "Chromium " ;;
+	        *) exit 1 ;;
 	esac
 }
 
-getCover() {
-       local tempfile="/tmp/tmp.xG2g4TRv4i"
-       local path="/tmp/cover.png"
+getAlbumCover(){
+       local previousUrlFile="/tmp/tmp.xG2g4TRv4i"
+       local pathToAlbumCover="/tmp/cover.png"
 
-       if [[ "$url" != $(< "$tempfile") ]]; then
-                curl "$url" -o "$path" 
-                mogrify -format png "$path"
-                echo "$url" > "$tempfile"
+       if [[ "${urlOfSource}" != $(< "${previousUrlFile}") ]]; then
+                curl "${urlOfSource}" -o "${pathToAlbumCover}" 
+                mogrify -format png "${pathToAlbumCover}"
+                echo "${urlOfSource}" > "${previousUrlFile}"
+
        fi
-       url="$path"
+       pathToSourceCover="${pathToAlbumCover}"
 }
 
-# Parse the argument
+scriptName="$(basename "$0")"
+[[ "$#" -eq 0 ]] && usage && exit 1
+source="$(getMetadata "mpris:trackid")"
+
 case "$1" in
 --title)
-	title=$(getMetadata "xesam:title")
+	titleOfSource="$(getMetadata "xesam:title")"
+        titleOfSource="${titleOfSource:0:28}"
 
-	if [ -n "$title" ]; then
-		echo "${title:0:28}" # Limit the output to 50 characters
+	if [[ -n "${titleOfSource}" ]]; then
+		echo "${titleOfSource}"
 	else
 		exit 1 
 	fi
 	;;
 --arturl)
-	url=$(getMetadata "mpris:artUrl")
+	urlOfSource="$(getMetadata "mpris:artUrl")"
 
-	[[ -z "$url" ]] && exit 1
-	if [[ "$url" == file://* ]]; then
-		url=${url#file://}
-	elif [[ "$url" == http://* ]] || [[ "$url" == https://* ]]; then
-		getCover
+	[[ -z "${urlOfSource}" ]] && exit 1
+	if [[ "${urlOfSource}" == file://* ]]; then
+		pathToSourceCover=${urlOfSource#file://}
+	elif [[ "${urlOfSource}" == http://* ]] || [[ "${urlOfSource}" == https://* ]]; then
+		getAlbumCover
 	fi
-	echo "$url"
+
+	if [[ "${source}" != *"chromium"* ]]; then
+	          magick "${pathToSourceCover}" -resize "100x100^" -gravity center -extent 100x100 "${pathToSourceCover}"
+	fi
+	echo "${pathToSourceCover}"
 	;;
 --artist)
-	artist=$(getMetadata "xesam:artist")
+	artistName="$(getMetadata "xesam:artist")"
+        artistName="${artistName/,*}"
 
-	if [ -n "$artist" ]; then
-		echo "${artist:0:30}" # Limit the output to 50 characters
+	if [[ -n "${artistName}" ]]; then
+		echo "${artistName}"
 	else
 		exit 1
 	fi
 	;;
 --length)
-	duration=$(getMetadata "mpris:length")
+	durationOfSource="$(getMetadata "mpris:length")"
 
-	[ -z "$duration" ] && exit 1
+	[[ -z "${durationOfSource}" ]] && exit 1
 
-	durationInSeconds=$((duration / 1000000))
-	minutes=$((durationInSeconds / 60))
-	seconds=$((durationInSeconds % 60))
+	readonly DURATIN_IN_SECONDS="$((durationOfSource / 1000000))"
+	readonly MINUTES="$((DURATIN_IN_SECONDS / 60))"
+	readonly SECONDS="$((DURATIN_IN_SECONDS % 60))"
 
-        printf "%02d:%02d" "$minutes" "$seconds"
+        printf "%02d:%02d" "${MINUTES}" "${SECONDS}"
 	;;
 --status)
-	status=$(playerctl status 2>/dev/null)
+	statusOfSource="$(playerctl status 2>/dev/null)"
 
-	if [[ $status == "Paused" ]]; then
+	if [[ "${statusOfSource}" == "Paused" ]]; then
 		echo ""
-	elif [[ $status == "Playing" ]]; then
+	elif [[ "${statusOfSource}" == "Playing" ]]; then
 		echo ""
 	else
 		exit 1 
 	fi
 	;;
 --album)
-	album=$(getMetadata "xesam:album")
-	length=${#album}
-	lim="20"
+	albumName="$(getMetadata "xesam:album")"
+	albumNameLength="${#albumName}"
+	limiteOfCharacters="20"
+        shortenAlbumName="${albumName:0:$limiteOfCharacters}"
 
-	if [[ -n $album ]]; then
-		if [[ "$length" -gt "$lim" ]]; then
-			echo "${album:0:$lim}..." # Cut the output
+	if [[ -n "${albumName}" ]]; then
+		if [[ "${albumNameLength}" -gt "${limiteOfCharacters}" ]]; then
+			echo "${shortenAlbumName}..."
 		else 
-			echo "$album"
+			echo "${albumName}"
 		fi
 
 	else
@@ -108,9 +125,10 @@ case "$1" in
 --source)
 	getSourceInfo
 	;;
-*)
-	echo "Invalid option: $1"
-	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source"
-	exit 1
+--help)
+        usage
 	;;
+*)
+	echo "${scriptName}: invalid option '$1'"
+	echo "Try '${scriptName} --help' for more information." && exit 1
 esac
