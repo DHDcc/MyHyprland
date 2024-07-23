@@ -43,7 +43,7 @@ getAlbumCover(){
        pathToSourceCover="${pathToAlbumCover}"
 }
 
-scriptName="$(basename "$0")"
+scriptName="${0##*/}"
 [[ "$#" -eq 0 ]] && usage && exit 1
 source="$(getMetadata "mpris:trackid")"
 
