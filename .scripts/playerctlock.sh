@@ -22,9 +22,9 @@ getMetadata() {
 
 getSourceInfo() {
 	case "${source}" in
-		*Feishin* ) echo -e "Feishin " ;;
-                *spotify* ) echo -e "Spotify " ;;
-		*chromium* ) echo -e "Chromium " ;;
+		*Feishin* ) echo "Feishin " ;;
+                *spotify* ) echo "Spotify " ;;
+		*chromium* ) echo "Chromium " ;;
 	        *) exit 1 ;;
 	esac
 }
