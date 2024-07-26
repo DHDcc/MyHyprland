@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 usage() {
     cat << EOF 
 usage: ${scriptName} [options]
@@ -16,12 +15,12 @@ usage: ${scriptName} [options]
 EOF
 }
 
-getMetadata(){
+getMetadata() {
 	local key="$1"
 	playerctl metadata --format "{{ $key }}" 2>/dev/null
 }
 
-getSourceInfo(){
+getSourceInfo() {
 	case "${source}" in
 		*Feishin* ) echo -e "Feishin " ;;
                 *spotify* ) echo -e "Spotify " ;;
@@ -30,7 +29,7 @@ getSourceInfo(){
 	esac
 }
 
-getAlbumCover(){
+getAlbumCover() {
        local previousUrlFile="/tmp/tmp.xG2g4TRv4i"
        local pathToAlbumCover="/tmp/cover.png"
 
@@ -96,7 +95,8 @@ case "$1" in
 	;;
 --status)
 	statusOfSource="$(playerctl status 2>/dev/null)"
-
+        
+	[[ -z "${source}" ]] && exit 1
 	if [[ "${statusOfSource}" == "Paused" ]]; then
 		echo ""
 	elif [[ "${statusOfSource}" == "Playing" ]]; then
