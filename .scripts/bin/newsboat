@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-file=$HOME/.config/newsboat/.last-num
+previousArticlesNumberFile="${XDG_CONFIG_HOME:-$HOME/.config}/newsboat/.previous_articles_number"
 
-if [ $# -eq 0 ]; then
-     newsboat && echo 0 > "$file"
+if (( "$#" == 0 )); then
+     newsboat && echo 0 > "${previousArticlesNumberFile}"
 else 
      newsboat "$@"
 fi
