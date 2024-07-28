@@ -10,7 +10,7 @@
 /****************************************************************************
  * Betterfox                                                                *
  * "Ad meliora"                                                             *
- * version: 126                                                             *
+ * version: 128                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
 ****************************************************************************/
 
@@ -87,11 +87,14 @@ user_pref("browser.sessionstore.interval", 60000);
 user_pref("privacy.history.custom", true);
 
 /** SEARCH / URL BAR ***/
+user_pref("browser.urlbar.trimHttps", true);
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("browser.search.suggest.enabled", false);
+user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
+user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.formfill.enable", false);
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.insecure_connection_text.pbmode.enabled", true);
@@ -109,8 +112,6 @@ user_pref("editor.truncate_user_pastes", false);
 
 /** MIXED CONTENT + CROSS-SITE ***/
 user_pref("security.mixed_content.block_display_content", true);
-user_pref("security.mixed_content.upgrade_display_content", true);
-user_pref("security.mixed_content.upgrade_display_content.image", true);
 user_pref("pdfjs.enableScripting", false);
 user_pref("extensions.postDownloadThirdPartyPrompt", false);
 
@@ -130,7 +131,6 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 /** MOZILLA ***/
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
-user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
 user_pref("permissions.manager.defaultsUrl", "");
 user_pref("webchannel.allowObject.urlWhitelist", "");
 
@@ -166,6 +166,7 @@ user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
+user_pref("dom.private-attribution.submission.enabled", false);
 
 /****************************************************************************
  * SECTION: PESKYFOX                                                        *
@@ -228,8 +229,8 @@ user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 
 /****************************************************************************
- * START: MY OVERRIDES                                                      *
-****************************************************************************/
+ *  * START: MY OVERRIDES                                                      *
+ *  ****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // https://codeberg.org/Narsil/user.js/src/branch/main/desktop
@@ -238,7 +239,9 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // PREF: enforce certificate pinning
 // [ERROR] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE
 /// user_pref("security.cert_pinning.enforcement_level", 2);
-
+//
+// Prevent WebrTC IP Leak
+user_pref("media.peerconnection.enabled", false);
 
 // PREF: disable all DRM content
 user_pref("media.eme.enabled", false);
@@ -277,13 +280,17 @@ user_pref("javascript.options.baselinejit", false);
 user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN PREF]
 
 // Disable sending additional analytics to web servers
-user_pref("beacon.enabled", false); 
+user_pref("beacon.enabled", false);
+
+// Disable session restore
+user_pref("browser.sessionstore.interval", 600000000); // Default: 60000
 
 /****************************************************************************
- * SECTION: SMOOTHFOX                                                       *
-****************************************************************************/
+ *  * SECTION: SMOOTHFOX                                                       *
+ *  ****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
-// Enter your scrolling overrides below this line:
+// // Enter your scrolling overrides below this line:
+
 
 /****************************************************************************
  * END: BETTERFOX                                                           *
