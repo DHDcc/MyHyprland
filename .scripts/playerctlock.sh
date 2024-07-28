@@ -7,7 +7,7 @@ usage: ${scriptName} [options]
     --title    Get the title of the source
     --arturl   Get the path to the cover of the source
     --artist   Get the name of the artist
-    --length   Get the length of the source
+    --duration Get the duration of the source
     --album    Get the name of the album
     --status   Get the status of the source
     --source   Get info on the source
@@ -83,7 +83,7 @@ case "$1" in
 		exit 1
 	fi
 	;;
---length)
+--duration)
 	durationOfSource="$(getMetadata "mpris:length")"
 
 	[[ -z "${durationOfSource}" ]] && exit 1
