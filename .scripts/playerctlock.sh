@@ -23,6 +23,7 @@ getMetadata() {
 getSourceInfo() {
 	case "${source}" in
 		*Feishin* ) echo "Feishin " ;;
+		*firefox* ) echo "Firefox 󰈹" ;;
                 *spotify* ) echo "Spotify " ;;
 		*chromium* ) echo "Chromium " ;;
 	        *) exit 1 ;;
@@ -67,7 +68,7 @@ case "$1" in
 		getAlbumCover
 	fi
 
-	if [[ "${source}" != *"chromium"* ]]; then
+	if [[ "${source}" != *"chromium"* ]] && [[ "${source}" != *"firefox"* ]]; then
 	          magick "${pathToSourceCover}" -resize "100x100^" -gravity center -extent 100x100 "${pathToSourceCover}"
 	fi
 	echo "${pathToSourceCover}"
