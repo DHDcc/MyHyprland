@@ -17,7 +17,7 @@ EOF
 
 getMetadata() {
 	local key="$1"
-	playerctl metadata --format "{{ $key }}" 2>/dev/null
+	playerctl metadata --format "{{ $key }}" || exit 1
 }
 
 getSourceInfo() {
@@ -35,7 +35,7 @@ getAlbumCover() {
        local pathToAlbumCover="/tmp/cover.png"
 
        if [[ "${urlOfSource}" != $(< "${previousUrlFile}") ]]; then
-                curl "${urlOfSource}" -o "${pathToAlbumCover}" 
+                curl "${urlOfSource}" -o "${pathToAlbumCover}"
                 mogrify -format png "${pathToAlbumCover}"
                 echo "${urlOfSource}" > "${previousUrlFile}"
 
@@ -44,7 +44,7 @@ getAlbumCover() {
 }
 
 scriptName="${0##*/}"
-[[ "$#" -eq 0 ]] && usage && exit 1
+(( "$#" == 0 )) && usage && exit 1
 source="$(getMetadata "mpris:trackid")"
 
 case "$1" in
@@ -95,7 +95,7 @@ case "$1" in
         printf "%02d:%02d" "${MINUTES}" "${SECONDS}"
 	;;
 --status)
-	statusOfSource="$(playerctl status 2>/dev/null)"
+	statusOfSource="$(playerctl status)"
         
 	[[ -z "${source}" ]] && exit 1
 	if [[ "${statusOfSource}" == "Paused" ]]; then
@@ -109,11 +109,11 @@ case "$1" in
 --album)
 	albumName="$(getMetadata "xesam:album")"
 	albumNameLength="${#albumName}"
-	limiteOfCharacters="20"
+	limiteOfCharacters="21"
         shortenAlbumName="${albumName:0:$limiteOfCharacters}"
 
 	if [[ -n "${albumName}" ]]; then
-		if [[ "${albumNameLength}" -gt "${limiteOfCharacters}" ]]; then
+		if (( albumNameLength > limiteOfCharacters )); then
 			echo "${shortenAlbumName}..."
 		else 
 			echo "${albumName}"
