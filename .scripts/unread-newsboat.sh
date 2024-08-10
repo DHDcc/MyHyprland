@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
-# This script will send a notification if there are any new articles.
+# This script will send a notification if there are any new articles in newsboat. 
 # Add "alias newsboat='~/YOUR_SCRIPTS_DIR/newsboat'" in your zshrc (you need the newsboat script)
 # -------------------------------------------------------------------
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus 
 # -------------------------------------------------------------------
 
-file=$HOME/.config/newsboat/.last-num
-icon=$HOME/icons/newsboat.svg
+previousArticlesNumberFile="${HOME}/.config/newsboat/.previous_articles_number"
+newsboatIcon="${HOME}/icons/newsboat.svg"
+currentArticlesNumber="$(command newsboat -x reload print-unread)"
+currentArticlesNumber="${currentArticlesNumber//[^0-9]/}"
 
-if [ ! -f "$file" ]; then
-     echo 0 > "$file"
-fi
+[[ -z "${currentArticlesNumber}" ]] && exit 1
+[[ ! -f "${previousArticlesNumberFile}" ]] && echo 0 > "${previousArticlesNumberFile}"
 
-num=$(command newsboat -x reload print-unread | awk '{print $1}')
-last_num=$(cat $file)
+previousArticlesNumber="$(< $previousArticlesNumberFile)"
 
-if [[ $num == $last_num ]]; then
-    exit 0
-elif [[ "$num" -ne 0 ]]; then
-    notify-send -i "$icon" -u normal -t 4000 "Newsboat" "You have "$num" new articles"
-    echo "$num" > "$file"
+if [[ "${currentArticlesNumber}" -eq "${previousArticlesNumber}" ]]; then
+     exit 0
+elif [[ "${currentArticlesNumber}" -ne 0 ]]; then
+     notify-send -i "${newsboatIcon}" -u normal -t 5000 "Newsboat" "You have ${currentArticlesNumber} new articles"
+     echo "${currentArticlesNumber}" > "${previousArticlesNumberFile}"
 else
-    exit 0
+     exit 0
 fi
