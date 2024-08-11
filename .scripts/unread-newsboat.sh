@@ -16,9 +16,7 @@ currentArticlesNumber="${currentArticlesNumber//[^0-9]/}"
 
 previousArticlesNumber="$(< $previousArticlesNumberFile)"
 
-if [[ "${currentArticlesNumber}" -eq "${previousArticlesNumber}" ]]; then
-     exit 0
-elif [[ "${currentArticlesNumber}" -ne 0 ]]; then
+if [[ "${currentArticlesNumber}" -ne 0 ]] && [[ "${currentArticlesNumber}" -ne "${previousArticlesNumber}" ]]; then
      notify-send -i "${newsboatIcon}" -u normal -t 5000 "Newsboat" "You have ${currentArticlesNumber} new articles"
      echo "${currentArticlesNumber}" > "${previousArticlesNumberFile}"
 else
