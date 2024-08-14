@@ -1,79 +1,65 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # I DID NOT WRITE THIS SCRIPT, THE OP OF THIS SCRIPT IS https://github.com/JaKooLit
-# I did update a couple thing lines, but that's about it
+# I did update a couple thing lines, but that's about it.
+# This script for selecting wallpapers (SUPER W) or by typing "wallpapers" in to your terminal.
 
-# This script for selecting wallpapers (SUPER W)
-
-SCRIPTSDIR="$HOME/.scripts"
-
-# WALLPAPERS PATH
-wallDIR="$HOME/.config/swww/wallpapers"
-themesDir="$HOME/.config/rofi/wallpaper"
+wallpapersDirectory="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wallpapers"
+rofiThemesDirectory="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/wallpaper"
 
 # Transition config
-FPS=170
-TYPE="fade"
-DURATION=1
-BEZIER=".43,1.19,1,.4"
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+fps="170"
+type="fade"
+duration="1"
+bezier=".43,1.19,1,.4"
+swwwParams="--transition-fps ${fps} --transition-type ${type} --transition-duration ${duration}"
+wallpapers=($(ls "${wallpapersDirectory}" | grep -E ".jpg$|.jpeg$|.png$|.gif$"))
+rofiCommand="rofi -show -dmenu -config ${rofiThemesDirectory}/wallpaper.rasi"
 
-# Retrieve image files
-PICS=($(ls "${wallDIR}" | grep -E ".jpg$|.jpeg$|.png$|.gif$"))
-
-# Rofi command
-# rofi_command="~/.config/rofi/launchers/type-4/launcher.sh"
-rofi_command="rofi -show -dmenu -config ${themesDir}/wallpaper.rasi"
-
-menu() {
-  for i in "${!PICS[@]}"; do
+menu(){
+  for i in "${!wallpapers[@]}"; do
     # Displaying .gif to indicate animated images
-    if [[ -z $(echo "${PICS[$i]}" | grep .gif$) ]]; then
-      printf "$(echo "${PICS[$i]}" | cut -d. -f1)\x00icon\x1f${wallDIR}/${PICS[$i]}\n"
+    if [[ -z $(echo "${wallpapers[$i]}" | grep .gif$) ]]; then
+      printf "$(echo "${wallpapers[$i]}" | cut -d. -f1)\x00icon\x1f${wallpapersDirectory}/${wallpapers[$i]}\n"
     else
-      printf "${PICS[$i]}\n"
+      printf "${wallpapers[$i]}\n"
     fi
   done
 }
 
 swww query || swww init
 
-main() {
-  choice=$(menu | ${rofi_command})
+main(){
+  local choice=$(menu | ${rofiCommand})
 
-  # No choice case
-  if [[ -z $choice ]]; then
-    exit 0
-  fi
+  [[ -z "${choice}" ]] && exit 0
 
   # Find the index of the selected file
-  pic_index=-1
-  for i in "${!PICS[@]}"; do
-    filename=$(basename "${PICS[$i]}")
-    if [[ "$filename" == *"$choice"* ]]; then
-      pic_index=$i
+  wallpaperIndex="-1"
+  for i in "${!wallpapers[@]}"; do
+	  wallpaperName="$(basename "${wallpapers[$i]}")"
+    if [[ "${wallpaperName}" == *"${choice}"* ]]; then
+      wallpaperIndex="$i"
       break
     fi
   done
 
-  if [[ $pic_index -ne -1 ]]; then
-    swww img "${wallDIR}/${PICS[$pic_index]}" $SWWW_PARAMS 
+  if ((wallpaperIndex != -1)); then
+    swww img "${wallpapersDirectory}/${wallpapers[${wallpaperIndex}]}" ${swwwParams}
   else
     echo "Image not found."
     exit 1
   fi
 }
 
-lockScreen(){
-  # This will also change the wallpaper of your lock screen (hyprlock)
- 
-  local hyprlockConfigFile="${XDG_CONFIG_HOME:-${HOME}}/hypr/hyprlock.conf"
-  local currentWallpaperName=${PICS[$pic_index]}
-  local previousWallpaperPath=$(grep "swww" "$hyprlockConfigFile" | awk '{print $3}')
-  local previousWallpaperName="${previousWallpaperPath##*/}"
-  local lineNumber=$(grep -n "swww" "$hyprlockConfigFile" | awk -F':' '{print $1}')
+lockScreenWallpaper(){
+     local hyprlockConfigFile="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/hyprlock.conf"
+     local currentWallpaperName="${wallpapers[$wallpaperIndex]}"
+     local previousWallpaperName="$(grep "swww" "${hyprlockConfigFile}" | awk '{print $3}')"
+     local previousWallpaperName="${previousWallpaperName##*/}"
+     local lineNumber="$(grep -n "swww" "${hyprlockConfigFile}" | awk -F':' '{print $1}')"
 
-  sed -i "${lineNumber}s/${previousWallpaperName}/${currentWallpaperName}/" "$hyprlockConfigFile"
+     sed -i "${lineNumber}s/${previousWallpaperName}/${currentWallpaperName}/" "${hyprlockConfigFile}"
 }
 
 # Check if rofi is already running
@@ -83,4 +69,4 @@ if pidof rofi > /dev/null; then
 fi
 
 main
-#lockScreen
+#lockScreenWallpaper
