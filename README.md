@@ -16,8 +16,8 @@
 
 
 
-
-
+> [!NOTE]
+> I use a 27" monitor, so you will probaly need to resize my configs.
 
 
 ## Software I Use
