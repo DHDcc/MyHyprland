@@ -17,7 +17,7 @@
 
 
 > [!NOTE]
-> I use a 27" monitor, so you will probaly need to resize my configs.
+> I use a 27" monitor, so you will probaly need to resize some of my configs.
 
 
 ## Software I Use
