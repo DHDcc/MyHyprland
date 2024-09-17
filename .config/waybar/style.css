@@ -24,7 +24,7 @@ window#waybar.hidden {
   all: initial; /* Remove GTK theme values (waybar #1351) */
   min-width: 0; /* Fix weird spacing in materia (waybar #450) */
   box-shadow: inset 0 -3px transparent; /* Use box-shadow instead of border so the text isn't offset */
-  padding: 6px 18px;
+  padding: 6px 25px;
   margin: 6px 3px;
   border-radius: 4px;
   background-color: #1e1e2e;
@@ -57,7 +57,8 @@ window#waybar.hidden {
 #tray {
   border-radius: 4px;
   margin: 6px 3px;
-  padding: 6px 12px;
+  padding: 6px 20px;
+  font-size: 14px;
   background-color: #1e1e2e;
   color: #181825;
 }
@@ -67,8 +68,8 @@ window#waybar.hidden {
 }
 
 #custom-logo {
-  padding-right: 7px;
-  padding-left: 7px;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-left: 5px;
   font-size: 15px;
   border-radius: 8px 0px 0px 8px;
@@ -89,7 +90,7 @@ window#waybar.hidden {
 
 #custom-notify {
   background-color: #94e2d5;
-  padding-right: 17px;
+  padding-right: 25px;
 }
 
 #clock {

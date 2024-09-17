@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "spacing": 0,
-    "height": 34,
+    "height": 47,
     "modules-left": [
         "custom/logo",
         "hyprland/workspaces",
@@ -22,7 +22,7 @@
         "on-click": "activate",
         "on-click-right": "fullscreen",
         "icon-theme": "WhiteSur",
-        "icon-size": 25,
+        "icon-size": 35,
         "tooltip-format": "{title}"
     },
     "hyprland/workspaces": {
@@ -35,6 +35,10 @@
             "3": "3",
             "4": "4",
             "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
             "active": "󱓻",
             "urgent": "󱓻"
         },
@@ -43,12 +47,16 @@
             "2": [],
             "3": [],
             "4": [],
-            "5": []
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": []
         }
     },
     "memory": {
         "interval": 5,
-        "format-alt": "<span font='10' rise='-1000'></span> {used} GiB",
+        "format-alt": "<span font='10' rise='-1000'></span> {used} GB",
         "format": "<span font='10' rise='-1000'></span> {percentage}%",
         "tooltip": false,
         "max-length": 10
@@ -74,42 +82,40 @@
          },
          "actions": {
            "on-click-right": "mode",
-           "on-click-forward": "tz_up",
-           "on-click-backward": "tz_down",
            "on-scroll-up": "shift_up",
            "on-scroll-down": "shift_down"
          },
-          "format": " {:%a %d %b  %H:%M}",
+          "format": " {:%a %d %b 󰥔 %H:%M}",
           "interval": 1
     },
     "custom/notify": {
       "escape": true,
       "exec": "swaync-client -swb",
       "exec-if": "which swaync-client",
-      "format": "{icon} {}",
+      "format": "{icon} {0}",
       "format-icons": {
-        "dnd-inhibited-none": " <sup></sup>",
-        "dnd-inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+        "dnd-inhibited-none": " <sup></sup>",
+        "dnd-inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
         "dnd-none": " ",
         "dnd-notification": " <span foreground='#f38ba8'><sup></sup></span>",
         "inhibited-none": "<sup>󰜺</sup>",
         "inhibited-notification": "󰵙<span foreground='#f38ba8'><sup></sup></span>",
-        "none": " ",
-        "notification": " <span foreground='#f38ba8'><sup></sup></span>"
+        "none": " ",
+        "notification": " <span foreground='#f38ba8'><sup></sup></span>"
       },
       "on-click": "sleep 0.1 && swaync-client -t -sw",
       "return-type": "json",
       "tooltip": false
-    },  
+    },
     "pulseaudio": {
         "format": "{icon}{volume}% {format_source}",
         "nospacing": 1,
         //"tooltip-format": "Volume : {volume}%",
-        "format-muted": "󰝟 {format_source}",
+        "format-muted": "󰝟 {volume}% {format_source}",
         "format-source": " {volume}%",
         "format-source-muted": " Muted",
         "format-icons": {
-            "default": ["󰖀 ","󰕾 "," "]
+            "default": ["󰖀 ","󰕾 ","  "]
         },
         "on-click": "pavucontrol",
         "scroll-step": 0
@@ -117,7 +123,6 @@
     "custom/logo": {
         "format": "   ",
         "tooltip": false,
-        //"on-click": "~/.scripts/wallpaper.sh swww"
     //},
     //"custom/power": {
         //"format": "  ",
