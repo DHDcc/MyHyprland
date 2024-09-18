@@ -8,7 +8,7 @@ check_connectors() {
 
         if [[ "${status}" == "connected" ]]; then
             connector=$(echo "${full_connector}" | sed 's/^card[0-9]\+-//')
-            printf '%s\n' "${connector^^}"
+            echo "${connector}"
         fi
     done
 }
