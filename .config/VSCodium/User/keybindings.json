@@ -1,0 +1,26 @@
+[
+  {
+      "key": "capslock",
+      "command": "vim.remap",
+      "args": {
+          "after": ["<Esc>"]
+      },
+      "when": "editorTextFocus && vim.mode == 'Insert'"
+  },
+  {
+      "key": "capslock",
+      "command": "vim.remap",
+      "args": {
+          "after": ["<Esc>"]
+      },
+      "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+      "key": "escape",
+      "command": "vim.remap",
+      "args": {
+          "after": ["<CapsLock>"]
+      },
+      "when": "editorTextFocus && vim.mode != 'Insert'"
+  }
+]
