@@ -19,7 +19,16 @@
 > [!NOTE]
 > I use a 27" monitor, so you will probaly need to resize some of my configs.
 
-
+## Main Keybinds
+* Super + Backspace = Open Kitty
+* Super + Q = Kill Active Window
+* Super + Shift + B  = Reload Waybar
+* Super + Space = Open Rofi
+* Alt + Shift + L = Lock Screen
+* Alt + Shift + S = Suspend System
+* Alt + Shift + R = Reboot System
+* Alt + Shift + Escape = Shutdown System
+  
 ## Software I Use
 
 * Operating System: [Arch Linux](https://archlinux.org/)
