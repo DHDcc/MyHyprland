@@ -16,10 +16,10 @@
 
 
 
-> [!NOTE]
-> I use a 27" monitor, so you will probaly need to resize some of my configs.
-
 ## Main Keybinds
+> [!NOTE]
+> The Caps Lock and Escape keys are swapped
+
 * Super + Backspace = Open Kitty
 * Super + Q = Kill Active Window
 * Super + Shift + B  = Reload Waybar
