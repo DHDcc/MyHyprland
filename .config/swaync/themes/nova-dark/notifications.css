@@ -17,7 +17,7 @@
   color: @text;
 
   all: unset;
-  font-size: 14px;
+  font-size: 16px;
   font-family: "JetBrains Mono Nerd Font 10";
   transition: 200ms;
 
@@ -33,9 +33,9 @@
   background: alpha(@background-alt, 1);
   box-shadow: 0 0 8px 0 rgba(0,0,0,.6);
   border: 1px solid @selected;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 16px;
-  padding: 0;
+  padding: 4;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification {

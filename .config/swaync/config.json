@@ -2,10 +2,10 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
   "positionY": "top",
-	"cssPriority": "user",
+  "cssPriority": "user",
 
-  "control-center-width": 380,
-  "control-center-height": 860, 
+  "control-center-width": 440,
+  "control-center-height": 1060, 
   "control-center-margin-top": 2,
   "control-center-margin-bottom": 2,
   "control-center-margin-right": 1,
@@ -75,12 +75,12 @@
     "buttons-grid": {
       "actions": [
         {
-          "label": " ",
-          "command": "pavucontrol"
+          "label": " ",
+          "command": "/home/USER/.scripts/wallpaper-randomize.sh"
         },
         {
-          "label": "",
-          "command": "wpctl set-mute @DEFAULT_SOURCE@ toggle"
+          "label": " ",
+          "command": "pavucontrol"
         },
         {
           "label": " ",
@@ -92,7 +92,7 @@
         },
         {
           "label": "",
-          "command": "vscodium /home/user/.config/hypr/hyprland.conf"
+          "command": "vscodium /home/USER/.config/hypr/hyprland.conf"
         }
         
       ]
