@@ -71,7 +71,7 @@ window#waybar.hidden {
   padding-right: 15px;
   padding-left: 15px;
   margin-left: 5px;
-  font-size: 15px;
+  font-size: 18px;
   border-radius: 8px 0px 0px 8px;
   color: #1793d1;
 }
@@ -112,4 +112,8 @@ background-color: #131822;
 tooltip label {
 padding: 5px;
 background-color: #131822;
+}
+
+#tray menu * { 
+font-size: 14px;
 }
