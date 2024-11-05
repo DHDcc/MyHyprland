@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-previousArticlesNumberFile="${XDG_CONFIG_HOME:-$HOME/.config}/newsboat/.previous_articles_number"
-
-if (( "$#" == 0 )); then
-     newsboat && echo 0 > "${previousArticlesNumberFile}"
-else 
-     newsboat "$@"
-fi
