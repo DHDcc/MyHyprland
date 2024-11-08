@@ -1,22 +1,22 @@
 //
 /* You may copy+paste this file and use it as it is.
- *
- * If you make changes to your about:config while the program is running, the
- * changes will be overwritten by the user.js when the application restarts.
- *
- * To make lasting changes to preferences, you will have to edit the user.js.
- */
+*
+* If you make changes to your about:config while the program is running, the
+* changes will be overwritten by the user.js when the application restarts.
+*
+* To make lasting changes to preferences, you will have to edit the user.js.
+*/
 
 /****************************************************************************
- * Betterfox                                                                *
- * "Ad meliora"                                                             *
- * version: 129                                                             *
- * url: https://github.com/yokoffing/Betterfox                              *
- ****************************************************************************/
+* Betterfox                                                                *
+* "Ad meliora"                                                             *
+* version: 131                                                             *
+* url: https://github.com/yokoffing/Betterfox                              *
+****************************************************************************/
 
 /****************************************************************************
- * SECTION: FASTFOX                                                         *
- ****************************************************************************/
+* SECTION: FASTFOX                                                         *
+****************************************************************************/
 /** GENERAL ***/
 user_pref("content.notify.interval", 100000);
 
@@ -54,22 +54,14 @@ user_pref("network.predictor.enable-prefetch", false);
 /** EXPERIMENTAL ***/
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
 user_pref("dom.enable_web_task_scheduling", true);
-user_pref("dom.security.sanitizer.enabled", true);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
  ****************************************************************************/
-/** TRACKING PROTECTION ***/
+ /** TRACKING PROTECTION ***/
 user_pref("browser.contentblocking.category", "strict");
-user_pref(
-  "urlclassifier.trackingSkipURLs",
-  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com",
-);
-user_pref(
-  "urlclassifier.features.socialtracking.skipURLs",
-  "*.instagram.com, *.twitter.com, *.twimg.com",
-);
-user_pref("network.cookie.sameSite.noneRequiresSecure", true);
+user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com");
+user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com");
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.uitour.enabled", false);
@@ -89,7 +81,7 @@ user_pref("security.tls.enable_0rtt_data", false);
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 user_pref("browser.sessionstore.interval", 60000);
 
-/** SHUTDOWN & SANITIZING ***/
+** SHUTDOWN & SANITIZING ***/
 user_pref("privacy.history.custom", true);
 
 /** SEARCH / URL BAR ***/
@@ -99,8 +91,6 @@ user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.formfill.enable", false);
 user_pref("security.insecure_connection_text.enabled", true);
@@ -119,17 +109,15 @@ user_pref("editor.truncate_user_pastes", false);
 /** MIXED CONTENT + CROSS-SITE ***/
 user_pref("security.mixed_content.block_display_content", true);
 user_pref("pdfjs.enableScripting", false);
-user_pref("extensions.postDownloadThirdPartyPrompt", false);
+
+/** EXTENSIONS ***/
+user_pref("extensions.enabledScopes", 5);
 
 /** HEADERS / REFERERS ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 /** CONTAINERS ***/
 user_pref("privacy.userContext.ui.enabled", true);
-
-/** WEBRTC ***/
-user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-user_pref("media.peerconnection.ice.default_address_only", true);
 
 /** SAFE BROWSING ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
@@ -174,40 +162,26 @@ user_pref("network.captive-portal-service.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
 
 /****************************************************************************
- * SECTION: PESKYFOX                                                        *
- ****************************************************************************/
+* SECTION: PESKYFOX                                                        *
+****************************************************************************/
 /** MOZILLA UI ***/
 user_pref("browser.privatebrowsing.vpnpromourl", "");
 user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false,
-);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false,
-);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
-user_pref("browser.tabs.tabmanager.enabled", false);
 user_pref("browser.profiles.enabled", true);
 
 /** THEME ADJUSTMENTS ***/
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.compactmode.show", true);
-user_pref("browser.display.focus_ring_on_anything", true);
-user_pref("browser.display.focus_ring_style", 0);
-user_pref("browser.display.focus_ring_width", 0);
-user_pref("layout.css.prefers-color-scheme.content-override", 2);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
-user_pref(
-  "browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled",
-  true,
-);
+user_pref("browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled", true);
 
 /** COOKIE BANNER HANDLING ***/
 user_pref("cookiebanners.service.mode", 1);
@@ -216,7 +190,6 @@ user_pref("cookiebanners.service.mode.privateBrowsing", 1);
 /** FULLSCREEN NOTICE ***/
 user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("full-screen-api.transition-duration.leave", "0 0");
-user_pref("full-screen-api.warning.delay", -1);
 user_pref("full-screen-api.warning.timeout", 0);
 
 /** URL BAR ***/
@@ -226,6 +199,7 @@ user_pref("browser.urlbar.trending.featureGate", false);
 
 /** NEW TAB PAGE ***/
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
+user_pref("browser.newtabpage.activity-stream.showWeather", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 
 /** POCKET ***/
@@ -282,7 +256,7 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
 user_pref("extensions.enabledScopes", 5); // [HIDDEN PREF]
 
 // Enable ETP Strict Mode [FF86+]
-user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
+//user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 
 // Enable Firefox to clear items on shutdown
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
@@ -295,15 +269,26 @@ user_pref("javascript.options.jit_trustedprincipals", true); // [FF75+] [HIDDEN 
 // Disable sending additional analytics to web servers
 user_pref("beacon.enabled", false);
 
-// Disable session restore
-user_pref("browser.sessionstore.interval", 600000000); // Default: 60000
+// "Disable" session restore
+user_pref("browser.sessionstore.interval", 60000000); // Default: 60000
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
  ****************************************************************************/
-// visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
-// Enter your scrolling overrides below this line:
-
-/****************************************************************************
- * END: BETTERFOX                                                           *
- ****************************************************************************/
+// credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
+// recommended for 120hz+ displays
+// largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("general.smoothScroll", true); // DEFAULT
+user_pref("layout.frame_rate", 180); // DEFAULT = -1
+user_pref("mousewheel.min_line_scroll_amount", 20);
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
+user_pref("general.smoothScroll.currentVelocityWeighting", "1");
+user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
+user_pref("mousewheel.default.delta_multiplier_y", 250); // 250-400; adjust this number to your liking
