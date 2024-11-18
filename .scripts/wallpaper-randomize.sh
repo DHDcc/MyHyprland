@@ -1,26 +1,37 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-DIR="$HOME/.config/swww/wallpapers"
-PICS=()
+wallpapersDirectory="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wallpapers"
+wallpapersListFile="/tmp/wallpapers_file.txt"
+numberOfWallpapersInFile=$(wc -l < "${wallpapersListFile}")
+shuffleWallpapers(){ 
+  find "${wallpapersDirectory}" -maxdepth 1 -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -printf '%f\n' | shuf > "${wallpapersListFile}"
+}
 
-while IFS= read -r -d '' file; do
-  PICS+=("$file")
-done < <(find "${DIR}" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -print0)
+declare -A swww
+swww["transitionFps"]="120"
+swww["transitionType"]="grow"
+swww["transitionPos"]="bottom-right"
+swww["transitionDurationInSeconds"]="2"
 
-if [ "${#PICS[@]}" -eq 0 ]; then
-  echo "Error: No image files found in the specified directory: ${DIR}" >&2
-  exit 1
+if [[ ! -f "${wallpapersListFile}" ]] || [[ "${numberOfWallpapersInFile}" -eq "0" ]]; then
+     shuffleWallpapers
 fi
 
-RANDOMPICS="${PICS[$((RANDOM % ${#PICS[@]}))]}"
+randomWallpaperName="$(head -1 "${wallpapersListFile}")"
+randomWallpaperPath="${wallpapersDirectory}/${randomWallpaperName}"
 
-echo "Running change_swww function..."
-swww query || swww init
-if [ -f "${RANDOMPICS}" ]; then
-    echo "Setting wallpaper to ${RANDOMPICS}"
-    notify-send -t 1710 -i ~/icons/wallpapers.icon.png --hint int:transient:1 "Changing wallpaper...."
-    swww img "${RANDOMPICS}" --transition-fps 170 --transition-type any --transition-duration 3
+swww query || swww-daemon
+
+if [[ -f "${randomWallpaperPath}" ]]; then
+    echo "Setting wallpaper to ${randomWallpaperPath}"
+    #notify-send -t 1710 -i $HOME/icons/wallpapers.icon.png --hint int:transient:1 "Changing wallpaper...."
+    swww img "${randomWallpaperPath}" \
+         --transition-fps "${swww["transitionFps"]}" \
+         --transition-type "${swww["transitionType"]}" \
+         --transition-pos "${swww["transitionPos"]}" \
+         --transition-duration "${swww["transitionDurationInSeconds"]}"
+    sed -i "/${randomWallpaperName}/d" "${wallpapersListFile}"
 else
-   echo "Error: Image file not found: ${RANDOMPICS}" >&2
+   echo "Error: Image file not found: ${randomWallpaperPath}" >&2
    exit 1
 fi
